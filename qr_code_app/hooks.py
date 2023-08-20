@@ -1,15 +1,28 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from . import __version__ as app_version
 
 app_name = "qr_code_app"
 app_title = "Qr Code App"
-app_publisher = "ecs"
-app_description = "customization"
-app_email = "info@erpcloud.systems"
+app_publisher = "Avu"
+app_description = "Print QR Code"
+app_icon = "octicon octicon-file-directory"
+app_color = "grey"
+app_email = "shibyv@avu.net.in"
 app_license = "MIT"
 
 # Includes in <head>
 # ------------------
-
+jenv = {
+    "methods": [
+    "get_qr:qr_code_app.qr_generate.get_qr"
+]
+}
+test_string = 'value'
+test_list = ['value']
+test_dict = {
+    'key': 'value'
+}
 # include js, css files in header of desk.html
 # app_include_css = "/assets/qr_code_app/css/qr_code_app.css"
 # app_include_js = "/assets/qr_code_app/js/qr_code_app.js"
@@ -17,13 +30,6 @@ app_license = "MIT"
 # include js, css files in header of web template
 # web_include_css = "/assets/qr_code_app/css/qr_code_app.css"
 # web_include_js = "/assets/qr_code_app/js/qr_code_app.js"
-
-# include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "qr_code_app/public/scss/website"
-
-# include js, css files in header of web form
-# webform_include_js = {"doctype": "public/js/doctype.js"}
-# webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
@@ -45,48 +51,20 @@ app_license = "MIT"
 #	"Role": "home_page"
 # }
 
+# Website user home page (by function)
+# get_website_user_home_page = "qr_code_app.utils.get_home_page"
+
 # Generators
 # ----------
 
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
 
-# Jinja
-# ----------
-
-# add methods and filters to jinja environment
-# jinja = {
-#	"methods": "qr_code_app.utils.jinja_methods",
-#	"filters": "qr_code_app.utils.jinja_filters"
-# }
-
 # Installation
 # ------------
 
 # before_install = "qr_code_app.install.before_install"
 # after_install = "qr_code_app.install.after_install"
-
-# Uninstallation
-# ------------
-
-# before_uninstall = "qr_code_app.uninstall.before_uninstall"
-# after_uninstall = "qr_code_app.uninstall.after_uninstall"
-
-# Integration Setup
-# ------------------
-# To set up dependencies/integrations with other apps
-# Name of the app being installed is passed as an argument
-
-# before_app_install = "qr_code_app.utils.before_app_install"
-# after_app_install = "qr_code_app.utils.after_app_install"
-
-# Integration Cleanup
-# -------------------
-# To clean up dependencies/integrations with other apps
-# Name of the app being uninstalled is passed as an argument
-
-# before_app_uninstall = "qr_code_app.utils.before_app_uninstall"
-# after_app_uninstall = "qr_code_app.utils.after_app_uninstall"
 
 # Desk Notifications
 # ------------------
@@ -99,19 +77,11 @@ app_license = "MIT"
 # Permissions evaluated in scripted ways
 
 # permission_query_conditions = {
-#	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
+# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
 # }
 #
 # has_permission = {
-#	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
-
-# DocType Class
-# ---------------
-# Override standard doctype classes
-
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
+# 	"Event": "frappe.desk.doctype.event.event.has_permission",
 # }
 
 # Document Events
@@ -119,10 +89,10 @@ app_license = "MIT"
 # Hook on document methods and events
 
 # doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
+# 	"*": {
+# 		"on_update": "method",
+# 		"on_cancel": "method",
+# 		"on_trash": "method"
 #	}
 # }
 
@@ -130,21 +100,21 @@ app_license = "MIT"
 # ---------------
 
 # scheduler_events = {
-#	"all": [
-#		"qr_code_app.tasks.all"
-#	],
-#	"daily": [
-#		"qr_code_app.tasks.daily"
-#	],
-#	"hourly": [
-#		"qr_code_app.tasks.hourly"
-#	],
-#	"weekly": [
-#		"qr_code_app.tasks.weekly"
-#	],
-#	"monthly": [
-#		"qr_code_app.tasks.monthly"
-#	],
+# 	"all": [
+# 		"qr_code_app.tasks.all"
+# 	],
+# 	"daily": [
+# 		"qr_code_app.tasks.daily"
+# 	],
+# 	"hourly": [
+# 		"qr_code_app.tasks.hourly"
+# 	],
+# 	"weekly": [
+# 		"qr_code_app.tasks.weekly"
+# 	]
+# 	"monthly": [
+# 		"qr_code_app.tasks.monthly"
+# 	]
 # }
 
 # Testing
@@ -152,66 +122,10 @@ app_license = "MIT"
 
 # before_tests = "qr_code_app.install.before_tests"
 
-# Overriding Methods
+# Overriding Whitelisted Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "qr_code_app.event.get_events"
-# }
-#
-# each overriding function accepts a `data` argument;
-# generated from the base implementation of the doctype dashboard,
-# along with any modifications made in other Frappe apps
-# override_doctype_dashboards = {
-#	"Task": "qr_code_app.task.get_dashboard_data"
+# 	"frappe.desk.doctype.event.event.get_events": "qr_code_app.event.get_events"
 # }
 
-# exempt linked doctypes from being automatically cancelled
-#
-# auto_cancel_exempted_doctypes = ["Auto Repeat"]
-
-# Ignore links to specified DocTypes when deleting documents
-# -----------------------------------------------------------
-
-# ignore_links_on_delete = ["Communication", "ToDo"]
-
-# Request Events
-# ----------------
-# before_request = ["qr_code_app.utils.before_request"]
-# after_request = ["qr_code_app.utils.after_request"]
-
-# Job Events
-# ----------
-# before_job = ["qr_code_app.utils.before_job"]
-# after_job = ["qr_code_app.utils.after_job"]
-
-# User Data Protection
-# --------------------
-
-# user_data_fields = [
-#	{
-#		"doctype": "{doctype_1}",
-#		"filter_by": "{filter_by}",
-#		"redact_fields": ["{field_1}", "{field_2}"],
-#		"partial": 1,
-#	},
-#	{
-#		"doctype": "{doctype_2}",
-#		"filter_by": "{filter_by}",
-#		"partial": 1,
-#	},
-#	{
-#		"doctype": "{doctype_3}",
-#		"strict": False,
-#	},
-#	{
-#		"doctype": "{doctype_4}"
-#	}
-# ]
-
-# Authentication and authorization
-# --------------------------------
-
-# auth_hooks = [
-#	"qr_code_app.auth.validate"
-# ]

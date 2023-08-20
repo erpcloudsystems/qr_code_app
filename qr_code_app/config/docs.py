@@ -3,6 +3,7 @@ Configuration for docs
 """
 
 # source_link = "https://github.com/[org_name]/qr_code_app"
+# docs_base_url = "https://[org_name].github.io/qr_code_app"
 # headline = "App that does everything"
 # sub_heading = "Yes, you got that right the first time, everything"
 
